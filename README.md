@@ -7,6 +7,7 @@
 ## Assets
 
 - [M Farm RPG Assets Pack](https://assetstore.unity.com/packages/2d/m-farm-rpg-assets-pack-215013)
+- [DOTween (HOTween v2)](https://assetstore.unity.com/packages/tools/animation/dotween-hotween-v2-27676)
 
 ## Packages
 
