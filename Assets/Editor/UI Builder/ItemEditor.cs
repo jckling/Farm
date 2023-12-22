@@ -18,7 +18,7 @@ public class ItemEditor : EditorWindow
     private VisualElement iconPreview;
     private ListView itemListView;
 
-    [MenuItem("Window/UI Toolkit/ItemEditor")]
+    [MenuItem("Tools / ItemEditor")]
     public static void ShowExample()
     {
         ItemEditor wnd = GetWindow<ItemEditor>();

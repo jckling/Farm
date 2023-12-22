@@ -3,10 +3,14 @@ using UnityEngine;
 
 public class SwitchBounds : MonoBehaviour
 {
+    #region Event Functions
+
     private void Start()
     {
         SwitchConfinerShape();
     }
+
+    #endregion
 
     private void SwitchConfinerShape()
     {

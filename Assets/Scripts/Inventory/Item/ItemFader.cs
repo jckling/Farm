@@ -6,10 +6,14 @@ public class ItemFader : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
 
+    #region Event Functions
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
+
+    #endregion
 
     public void FadeIn()
     {

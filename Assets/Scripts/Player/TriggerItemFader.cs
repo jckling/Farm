@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class TriggerItemFader : MonoBehaviour
 {
+    #region Event Functions
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         ItemFader[] faders = other.GetComponentsInChildren<ItemFader>();
@@ -25,4 +27,6 @@ public class TriggerItemFader : MonoBehaviour
             }
         }
     }
+
+    #endregion
 }
