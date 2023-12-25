@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Farm.Inventory
 {
@@ -10,6 +10,10 @@ namespace Farm.Inventory
         private bool bagOpen;
 
         [SerializeField] private SlotUI[] playerSlots;
+
+        public Image dragItem;
+
+        public ItemTooltip itemTooltip;
 
         #region Event Functions
 
@@ -62,6 +66,8 @@ namespace Farm.Inventory
                     }
 
                     break;
+                case InventoryLocation.Box:
+                    break;
             }
         }
 
@@ -69,6 +75,22 @@ namespace Farm.Inventory
         {
             bagOpen = !bagOpen;
             bagUI.SetActive(bagOpen);
+        }
+
+        public void UpdateSlotHighlight(int index)
+        {
+            foreach (var slot in playerSlots)
+            {
+                if (slot.isSelected && slot.slotIndex == index)
+                {
+                    slot.slotHighlight.gameObject.SetActive(true);
+                }
+                else
+                {
+                    slot.isSelected = false;
+                    slot.slotHighlight.gameObject.SetActive(false);
+                }
+            }
         }
     }
 }

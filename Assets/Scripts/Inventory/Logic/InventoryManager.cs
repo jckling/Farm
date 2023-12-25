@@ -84,5 +84,24 @@ namespace Farm.Inventory
                 playerBag_SO.itemList[index] = new InventoryItem { itemID = id, itemAmount = currentAmount };
             }
         }
+
+        public void SwapItem(int fromIndex, int toIndex)
+        {
+            InventoryItem currentItem = playerBag_SO.itemList[fromIndex];
+            InventoryItem targetItem = playerBag_SO.itemList[toIndex];
+
+            if (targetItem.itemID != 0)
+            {
+                playerBag_SO.itemList[fromIndex] = targetItem;
+                playerBag_SO.itemList[toIndex] = currentItem;
+            }
+            else
+            {
+                playerBag_SO.itemList[toIndex] = currentItem;
+                playerBag_SO.itemList[fromIndex] = new InventoryItem();
+            }
+
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag_SO.itemList);
+        }
     }
 }

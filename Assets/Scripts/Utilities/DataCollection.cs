@@ -25,3 +25,11 @@ public struct InventoryItem
     public int itemID;
     public int itemAmount;
 }
+
+[Serializable]
+public struct AnimatorType
+{
+    public PartType partType;
+    public PartName partName;
+    public AnimatorOverrideController overrideController;
+}

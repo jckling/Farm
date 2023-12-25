@@ -26,3 +26,19 @@ public enum InventoryLocation
     Player,
     Box
 }
+
+public enum PartType
+{
+    None,
+    Carry,
+    Hop,
+    Break
+}
+
+public enum PartName
+{
+    Body,
+    Hair,
+    Arm,
+    Tool
+}
