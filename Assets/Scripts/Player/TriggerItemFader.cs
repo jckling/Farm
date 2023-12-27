@@ -16,7 +16,7 @@ public class TriggerItemFader : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         ItemFader[] faders = other.GetComponentsInChildren<ItemFader>();
         if (faders.Length > 0)

@@ -42,3 +42,11 @@ public enum PartName
     Arm,
     Tool
 }
+
+public enum Season
+{
+    Spring,
+    Summer,
+    Autumn,
+    Winter
+}
