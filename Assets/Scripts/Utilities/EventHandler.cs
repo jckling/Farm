@@ -18,10 +18,24 @@ public static class EventHandler
         InstantiateItemInScene?.Invoke(id, pos);
     }
 
-    public static Action<ItemDetails, bool> ItemSelectedEvent;
+    public static event Action<ItemDetails, bool> ItemSelectedEvent;
 
     public static void CallItemSelectedEvent(ItemDetails itemDetails, bool isSelected)
     {
         ItemSelectedEvent?.Invoke(itemDetails, isSelected);
+    }
+
+    public static event Action<int, int> GameMinuteEvent;
+
+    public static void CallGameMinuteEvent(int minute, int hour)
+    {
+        GameMinuteEvent?.Invoke(minute, hour);
+    }
+
+    public static event Action<int, int, int, int, Season> GameDateEvent;
+
+    public static void CallGameDateEvent(int hour, int day, int month, int year, Season season)
+    {
+        GameDateEvent?.Invoke(hour, day, month, year, season);
     }
 }

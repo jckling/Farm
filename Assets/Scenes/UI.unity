@@ -3367,6 +3367,7 @@ GameObject:
   - component: {fileID: 1037189192}
   - component: {fileID: 1037189194}
   - component: {fileID: 1037189193}
+  - component: {fileID: 1037189195}
   m_Layer: 5
   m_Name: GameTime
   m_TagString: Untagged
@@ -3438,6 +3439,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037189191}
   m_CullTransparentMesh: 1
+--- !u!114 &1037189195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037189191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e34b45d7c1e065f4383016e931ef4831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayNightImage: {fileID: 606351368}
+  clockParent: {fileID: 1178139917}
+  seasonImage: {fileID: 474015511}
+  dateText: {fileID: 1461176229}
+  timeText: {fileID: 631504495}
+  seasonSprites:
+  - {fileID: 21300000, guid: 8b9910d91179b4a099ab476320fa5ae7, type: 3}
+  - {fileID: 21300000, guid: 9a3bd1653028b428e882fa7ea297e736, type: 3}
+  - {fileID: 21300000, guid: a94f97806ef1a4a20ad529791fc938a5, type: 3}
+  - {fileID: 21300000, guid: cf64f70ccd4ea4cb3948f885a2e21562, type: 3}
 --- !u!1001 &1126408305
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4129,7 +4152,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461176227}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
