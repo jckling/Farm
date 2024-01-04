@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     private Vector2 movementInput;
     private Animator[] animators;
     private bool isMoving;
+    private bool inputDisable;
 
     #region Event Functions
 
@@ -19,15 +20,40 @@ public class Player : MonoBehaviour
         animators = GetComponentsInChildren<Animator>();
     }
 
+    private void OnEnable()
+    {
+        EventHandler.BeforeSceneUnloadEvent += OnBeforeSceneUnloadEvent;
+        EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
+        EventHandler.MoveToPosition += OnMoveToPosition;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.BeforeSceneUnloadEvent -= OnBeforeSceneUnloadEvent;
+        EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
+        EventHandler.MoveToPosition -= OnMoveToPosition;
+    }
+
     private void Update()
     {
-        PlayerInput();
+        if (inputDisable == false)
+        {
+            PlayerInput();
+        }
+        else
+        {
+            isMoving = false;
+        }
+
         SwitchAnimation();
     }
 
     private void FixedUpdate()
     {
-        Movement();
+        if (inputDisable == false)
+        {
+            Movement();
+        }
     }
 
     #endregion
@@ -72,5 +98,20 @@ public class Player : MonoBehaviour
                 anim.SetFloat("InputY", inputY);
             }
         }
+    }
+
+    private void OnBeforeSceneUnloadEvent()
+    {
+        inputDisable = true;
+    }
+
+    private void OnAfterSceneLoadedEvent()
+    {
+        inputDisable = false;
+    }
+
+    private void OnMoveToPosition(Vector3 targetPosition)
+    {
+        transform.position = targetPosition;
     }
 }

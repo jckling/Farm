@@ -1,7 +1,7 @@
 public class Settings
 {
-    // Fade
-    public const float fadeDuration = 0.35f;
+    // Item
+    public const float itemFadeDuration = 0.35f;
     public const float targetAlpha = 0.45f;
 
     // Time
@@ -11,4 +11,7 @@ public class Settings
     public const int hourHold = 23;
     public const int dayHold = 30;
     public const int seasonHold = 3;
+
+    // Scene
+    public const float fadeDuration = 1.5f;
 }

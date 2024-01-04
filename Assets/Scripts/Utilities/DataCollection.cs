@@ -33,3 +33,33 @@ public struct AnimatorType
     public PartName partName;
     public AnimatorOverrideController overrideController;
 }
+
+[Serializable]
+public class SerializableVector3
+{
+    public float x, y, z;
+
+    public SerializableVector3(Vector3 pos)
+    {
+        x = pos.x;
+        y = pos.y;
+        z = pos.z;
+    }
+
+    public Vector3 ToVector3()
+    {
+        return new Vector3(x, y, z);
+    }
+
+    public Vector2Int ToVector2Int()
+    {
+        return new Vector2Int((int)x, (int)y);
+    }
+}
+
+[Serializable]
+public class SceneItem
+{
+    public int itemID;
+    public SerializableVector3 position;
+}

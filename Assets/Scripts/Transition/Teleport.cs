@@ -4,7 +4,7 @@ namespace Farm.Transition
 {
     public class Teleport : MonoBehaviour
     {
-        public string sceneToGo;
+        [SceneName] public string sceneToGo;
         public Vector3 positionToGo;
 
         #region Event Functions
