@@ -37,7 +37,7 @@ MonoBehaviour:
     canCarried: 0
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1023
+  - itemID: 1003
     itemName: Reap
     itemDescription: Reap
     itemType: 6
@@ -49,7 +49,43 @@ MonoBehaviour:
     canCarried: 0
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1002
+  - itemID: 1004
+    itemName: Pickaxe
+    itemDescription: Pickaxe
+    itemType: 5
+    itemIcon: {fileID: 21300000, guid: ab9788b07a759404293670018c76ec0f, type: 3}
+    itemOnWorldSprite: {fileID: 0}
+    itemUseRadius: 1
+    canPickedup: 0
+    canDropped: 0
+    canCarried: 0
+    itemPrice: 0
+    sellPercentage: 0
+  - itemID: 1005
+    itemName: WaterCan
+    itemDescription: Water Can
+    itemType: 7
+    itemIcon: {fileID: 21300000, guid: 5b98b5b289f8549f9bbd017e5f0aa5c7, type: 3}
+    itemOnWorldSprite: {fileID: 0}
+    itemUseRadius: 1
+    canPickedup: 0
+    canDropped: 0
+    canCarried: 0
+    itemPrice: 0
+    sellPercentage: 0
+  - itemID: 1006
+    itemName: Basket
+    itemDescription: Basket
+    itemType: 8
+    itemIcon: {fileID: 21300000, guid: 21f88cda6c810402583055801e6a2c73, type: 3}
+    itemOnWorldSprite: {fileID: 0}
+    itemUseRadius: 1
+    canPickedup: 0
+    canDropped: 0
+    canCarried: 0
+    itemPrice: 0
+    sellPercentage: 0
+  - itemID: 1010
     itemName: Potato Seed
     itemDescription: Potato Seed
     itemType: 0
@@ -61,7 +97,7 @@ MonoBehaviour:
     canCarried: 1
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1003
+  - itemID: 1011
     itemName: Blueberry Seed
     itemDescription: Blueberry Seed
     itemType: 0
@@ -73,7 +109,7 @@ MonoBehaviour:
     canCarried: 1
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1004
+  - itemID: 1012
     itemName: Eggplant Seed
     itemDescription: Eggplant Seed
     itemType: 0
@@ -85,7 +121,7 @@ MonoBehaviour:
     canCarried: 1
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1005
+  - itemID: 1013
     itemName: Grape Seed
     itemDescription: Grape Seed
     itemType: 0
@@ -97,7 +133,7 @@ MonoBehaviour:
     canCarried: 1
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1006
+  - itemID: 1014
     itemName: Pink Radish Seed
     itemDescription: Pink Radish Seed
     itemType: 0
@@ -109,7 +145,7 @@ MonoBehaviour:
     canCarried: 1
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1007
+  - itemID: 1015
     itemName: Pumpkin Seed
     itemDescription: Pumpkin Seed
     itemType: 0
@@ -121,7 +157,7 @@ MonoBehaviour:
     canCarried: 1
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1008
+  - itemID: 1016
     itemName: Red Papper Seed
     itemDescription: Red Papper Seed
     itemType: 0
@@ -133,7 +169,7 @@ MonoBehaviour:
     canCarried: 1
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1009
+  - itemID: 1017
     itemName: Tomato Seed
     itemDescription: Tomato Seed
     itemType: 0
@@ -145,7 +181,7 @@ MonoBehaviour:
     canCarried: 1
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1010
+  - itemID: 1018
     itemName: Turnip Seed
     itemDescription: Turnip Seed
     itemType: 0
@@ -157,7 +193,7 @@ MonoBehaviour:
     canCarried: 1
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1011
+  - itemID: 1019
     itemName: Watermelon Seed
     itemDescription: Watermelon Seed
     itemType: 0
@@ -169,7 +205,7 @@ MonoBehaviour:
     canCarried: 1
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1012
+  - itemID: 1020
     itemName: Potato
     itemDescription: Potato
     itemType: 1
@@ -181,7 +217,7 @@ MonoBehaviour:
     canCarried: 0
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1013
+  - itemID: 1021
     itemName: Blueberry
     itemDescription: Blueberry
     itemType: 1
@@ -193,7 +229,7 @@ MonoBehaviour:
     canCarried: 0
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1014
+  - itemID: 1022
     itemName: Eggplant
     itemDescription: Eggplant
     itemType: 1
@@ -205,7 +241,7 @@ MonoBehaviour:
     canCarried: 0
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1015
+  - itemID: 1023
     itemName: Grape
     itemDescription: Grape
     itemType: 1
@@ -217,7 +253,7 @@ MonoBehaviour:
     canCarried: 0
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1016
+  - itemID: 1024
     itemName: Pink Radish
     itemDescription: Pink Radish
     itemType: 1
@@ -229,7 +265,7 @@ MonoBehaviour:
     canCarried: 0
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1017
+  - itemID: 1025
     itemName: Pumpkin
     itemDescription: Pumpkin
     itemType: 1
@@ -241,7 +277,7 @@ MonoBehaviour:
     canCarried: 0
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1018
+  - itemID: 1026
     itemName: Red Papper
     itemDescription: Red Papper
     itemType: 1
@@ -253,7 +289,7 @@ MonoBehaviour:
     canCarried: 0
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1019
+  - itemID: 1027
     itemName: Tomato
     itemDescription: 
     itemType: 1
@@ -265,7 +301,7 @@ MonoBehaviour:
     canCarried: 0
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1020
+  - itemID: 1028
     itemName: Turnip
     itemDescription: 
     itemType: 1
@@ -277,7 +313,7 @@ MonoBehaviour:
     canCarried: 0
     itemPrice: 0
     sellPercentage: 0
-  - itemID: 1021
+  - itemID: 1029
     itemName: Watermelon
     itemDescription: 
     itemType: 1
@@ -285,18 +321,6 @@ MonoBehaviour:
     itemOnWorldSprite: {fileID: 0}
     itemUseRadius: 0
     canPickedup: 1
-    canDropped: 0
-    canCarried: 0
-    itemPrice: 0
-    sellPercentage: 0
-  - itemID: 1024
-    itemName: WaterCan
-    itemDescription: Water Can
-    itemType: 7
-    itemIcon: {fileID: 21300000, guid: 5b98b5b289f8549f9bbd017e5f0aa5c7, type: 3}
-    itemOnWorldSprite: {fileID: 0}
-    itemUseRadius: 1
-    canPickedup: 0
     canDropped: 0
     canCarried: 0
     itemPrice: 0

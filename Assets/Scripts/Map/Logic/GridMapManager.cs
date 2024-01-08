@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -17,18 +16,22 @@ namespace Farm.Map
         private Dictionary<string, TileDetails> tileDetailsDict = new Dictionary<string, TileDetails>();
         private Grid currentGrid;
 
+        private Season currentSeason;
+
         #region Event Functions
 
         private void OnEnable()
         {
             EventHandler.ExecuteAfterAnimation += OnExecuteAfterAnimation;
             EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
+            EventHandler.GameDayEvent += OnGameDayEvent;
         }
 
         private void OnDisable()
         {
             EventHandler.ExecuteAfterAnimation -= OnExecuteAfterAnimation;
             EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
+            EventHandler.GameDayEvent += OnGameDayEvent;
         }
 
         private void Start()
@@ -100,9 +103,10 @@ namespace Farm.Map
         private void OnAfterSceneLoadedEvent()
         {
             currentGrid = FindObjectOfType<Grid>();
-
             digTilemap = GameObject.FindWithTag("Dig").GetComponent<Tilemap>();
             waterTilemap = GameObject.FindWithTag("Water").GetComponent<Tilemap>();
+
+            RefreshMap();
         }
 
         private void OnExecuteAfterAnimation(Vector3 mouseWorldPos, ItemDetails itemDetails)
@@ -141,7 +145,35 @@ namespace Farm.Map
                     case ItemType.Furniture:
                         break;
                 }
+
+                UpdateTileDetails(currentTile);
             }
+        }
+
+        private void OnGameDayEvent(int day, Season season)
+        {
+            currentSeason = season;
+
+            foreach (var (key, tileDetails) in tileDetailsDict)
+            {
+                if (tileDetails.daySinceWatered > -1)
+                {
+                    tileDetails.daySinceWatered = -1;
+                }
+
+                if (tileDetails.daySinceDug > -1)
+                {
+                    tileDetails.daySinceDug++;
+                }
+
+                if (tileDetails.daySinceDug == 5 && tileDetails.seedItemID == -1)
+                {
+                    tileDetails.daySinceDug = -1;
+                    tileDetails.canDig = true;
+                }
+            }
+
+            RefreshMap();
         }
 
         #endregion
@@ -162,6 +194,49 @@ namespace Farm.Map
             {
                 waterTilemap.SetTile(pos, waterTile);
             }
+        }
+
+        private void UpdateTileDetails(TileDetails tileDetails)
+        {
+            string key = tileDetails.gridX + "x" + tileDetails.gridY + "y" + SceneManager.GetActiveScene().name;
+            if (tileDetailsDict.ContainsKey(key))
+            {
+                tileDetailsDict[key] = tileDetails;
+            }
+        }
+
+        private void DisplayMap(string sceneName)
+        {
+            foreach (var (key, tileDetails) in tileDetailsDict)
+            {
+                if (key.Contains(sceneName))
+                {
+                    if (tileDetails.daySinceDug > -1)
+                    {
+                        SetDigGround(tileDetails);
+                    }
+
+                    if (tileDetails.daySinceWatered > -1)
+                    {
+                        SetWaterGround(tileDetails);
+                    }
+                }
+            }
+        }
+
+        void RefreshMap()
+        {
+            if (digTilemap != null)
+            {
+                digTilemap.ClearAllTiles();
+            }
+
+            if (waterTilemap != null)
+            {
+                waterTilemap.ClearAllTiles();
+            }
+
+            DisplayMap(SceneManager.GetActiveScene().name);
         }
     }
 }

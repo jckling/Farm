@@ -17,7 +17,7 @@ public static class EventHandler
     {
         InstantiateItemInScene?.Invoke(id, pos);
     }
-    
+
     public static event Action<int, Vector3> DropItemEvent;
 
     public static void CallDropItemEvent(int id, Vector3 pos)
@@ -37,6 +37,13 @@ public static class EventHandler
     public static void CallGameMinuteEvent(int minute, int hour)
     {
         GameMinuteEvent?.Invoke(minute, hour);
+    }
+
+    public static event Action<int, Season> GameDayEvent;
+
+    public static void CallGameDayEvent(int day, Season season)
+    {
+        GameDayEvent?.Invoke(day, season);
     }
 
     public static event Action<int, int, int, int, Season> GameDateEvent;

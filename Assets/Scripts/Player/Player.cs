@@ -100,6 +100,7 @@ public class Player : MonoBehaviour
             anim.SetBool("isMoving", isMoving);
             anim.SetFloat("MouseX", mouseX);
             anim.SetFloat("MouseY", mouseY);
+
             if (isMoving)
             {
                 anim.SetFloat("InputX", inputX);
@@ -153,7 +154,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        // TODO: Player animation
+        // TODO: Play animation
         if (itemDetails.itemType != ItemType.Seed && itemDetails.itemType != ItemType.Commodity &&
             itemDetails.itemType != ItemType.Furniture)
         {

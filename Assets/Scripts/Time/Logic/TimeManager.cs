@@ -34,12 +34,21 @@ public class TimeManager : MonoBehaviour
             }
         }
 
+        // TEST
         if (Input.GetKey(KeyCode.T))
         {
             for (int i = 0; i < 60; i++)
             {
                 UpdateGameTime();
             }
+        }
+
+        // TEST：仅更新日期，没有更新月份
+        if (Input.GetKey(KeyCode.G))
+        {
+            gameDay++;
+            EventHandler.CallGameDayEvent(gameDay, gameSeason);
+            EventHandler.CallGameDateEvent(gameHour, gameDay, gameMonth, gameYear, gameSeason);
         }
     }
 
@@ -99,6 +108,8 @@ public class TimeManager : MonoBehaviour
 
                             gameSeason = (Season)seasonNumber;
                         }
+
+                        EventHandler.CallGameDayEvent(gameDay, gameSeason);
                     }
                 }
 
