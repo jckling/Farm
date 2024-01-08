@@ -36,7 +36,7 @@ public class AnimatorOverride : MonoBehaviour
 
     private void OnItemSelectedEvent(ItemDetails itemDetails, bool isSelected)
     {
-        // TODO: 待补全
+        // WORKFLOW
         PartType currentType = itemDetails.itemType switch
         {
             ItemType.Seed => PartType.Carry,

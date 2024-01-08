@@ -7,14 +7,18 @@ namespace Farm.Inventory
     public class ItemManager : MonoBehaviour
     {
         public Item itemPrefab;
+        public Item bounceItemPrefab;
         private Transform itemParent;
         private Dictionary<string, List<SceneItem>> sceneItemDict = new Dictionary<string, List<SceneItem>>();
+        private Transform playerTransform => FindObjectOfType<Player>().transform;
+
 
         #region Event Functions
 
         private void OnEnable()
         {
             EventHandler.InstantiateItemInScene += OnInstantiateItemInScene;
+            EventHandler.DropItemEvent += OnDropItemEvent;
             EventHandler.BeforeSceneUnloadEvent += OnBeforeSceneUnloadEvent;
             EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
         }
@@ -22,16 +26,28 @@ namespace Farm.Inventory
         private void OnDisable()
         {
             EventHandler.InstantiateItemInScene -= OnInstantiateItemInScene;
+            EventHandler.DropItemEvent -= OnDropItemEvent;
             EventHandler.BeforeSceneUnloadEvent -= OnBeforeSceneUnloadEvent;
             EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
         }
 
         #endregion
 
+        #region EventHandler Functions
+
         private void OnInstantiateItemInScene(int id, Vector3 pos)
         {
             var item = Instantiate(itemPrefab, pos, Quaternion.identity, itemParent);
             item.itemID = id;
+        }
+
+        private void OnDropItemEvent(int id, Vector3 mousePos)
+        {
+            var item = Instantiate(bounceItemPrefab, playerTransform.position, Quaternion.identity, itemParent);
+            item.itemID = id;
+
+            var dir = (mousePos - playerTransform.position).normalized;
+            item.GetComponent<ItemBounce>().InitBounceItem(mousePos, dir);
         }
 
         private void OnBeforeSceneUnloadEvent()
@@ -44,6 +60,8 @@ namespace Farm.Inventory
             itemParent = GameObject.FindWithTag("ItemParent").transform;
             RecreateAllSceneItems();
         }
+
+        #endregion
 
         private void GetAllSceneItems()
         {

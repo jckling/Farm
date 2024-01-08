@@ -26,7 +26,7 @@ namespace Farm.Inventory
         private void Start()
         {
             isSelected = false;
-            if (itemDetails.itemID == 0)
+            if (itemDetails == null)
             {
                 UpdateEmptySlot();
             }
@@ -39,8 +39,11 @@ namespace Farm.Inventory
             if (isSelected)
             {
                 isSelected = false;
+                inventoryUI.UpdateSlotHighlight(-1);
+                EventHandler.CallItemSelectedEvent(itemDetails, isSelected);
             }
 
+            itemDetails = null;
             slotImage.enabled = false;
             amountText.text = string.Empty;
             button.interactable = false;
@@ -61,7 +64,7 @@ namespace Farm.Inventory
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (itemAmount == 0)
+            if (itemDetails == null)
             {
                 return;
             }

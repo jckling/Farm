@@ -17,6 +17,13 @@ public static class EventHandler
     {
         InstantiateItemInScene?.Invoke(id, pos);
     }
+    
+    public static event Action<int, Vector3> DropItemEvent;
+
+    public static void CallDropItemEvent(int id, Vector3 pos)
+    {
+        DropItemEvent?.Invoke(id, pos);
+    }
 
     public static event Action<ItemDetails, bool> ItemSelectedEvent;
 
@@ -65,5 +72,19 @@ public static class EventHandler
     public static void CallMoveToPosition(Vector3 targetPosition)
     {
         MoveToPosition?.Invoke(targetPosition);
+    }
+
+    public static event Action<Vector3, ItemDetails> MouseClickedEvent;
+
+    public static void CallMouseClickedEvent(Vector3 pos, ItemDetails itemDetails)
+    {
+        MouseClickedEvent?.Invoke(pos, itemDetails);
+    }
+
+    public static event Action<Vector3, ItemDetails> ExecuteAfterAnimation;
+
+    public static void CallExecuteAfterAnimationEvent(Vector3 pos, ItemDetails itemDetails)
+    {
+        ExecuteAfterAnimation?.Invoke(pos, itemDetails);
     }
 }

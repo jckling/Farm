@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Farm.Inventory
@@ -9,9 +10,28 @@ namespace Farm.Inventory
 
         #region Event Functions
 
+        private void OnEnable()
+        {
+            EventHandler.DropItemEvent += OnDropItemEvent;
+        }
+
+        private void OnDisable()
+        {
+            EventHandler.DropItemEvent -= OnDropItemEvent;
+        }
+
         private void Start()
         {
             EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag_SO.itemList);
+        }
+
+        #endregion
+
+        #region EventHandler Functions
+
+        private void OnDropItemEvent(int id, Vector3 pos)
+        {
+            RemoveItem(id, 1);
         }
 
         #endregion
@@ -99,6 +119,29 @@ namespace Farm.Inventory
             {
                 playerBag_SO.itemList[toIndex] = currentItem;
                 playerBag_SO.itemList[fromIndex] = new InventoryItem();
+            }
+
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag_SO.itemList);
+        }
+
+        public void RemoveItem(int id, int removeAmount)
+        {
+            var index = GetItemIndexInBag(id);
+            if (playerBag_SO.itemList[index].itemAmount > removeAmount)
+            {
+                var amount = playerBag_SO.itemList[index].itemAmount - removeAmount;
+                var item = new InventoryItem
+                {
+                    itemID = id,
+                    itemAmount = amount
+                };
+
+                playerBag_SO.itemList[index] = item;
+            }
+            else if (playerBag_SO.itemList[index].itemAmount == removeAmount)
+            {
+                var item = new InventoryItem();
+                playerBag_SO.itemList[index] = item;
             }
 
             EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag_SO.itemList);

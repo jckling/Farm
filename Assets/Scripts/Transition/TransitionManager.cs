@@ -23,10 +23,11 @@ namespace Farm.Transition
             EventHandler.TransitionEvent -= OnTransitionEvent;
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
-            StartCoroutine(LoadSceneSetActive(startSceneName));
             fadeCanvasGroup = FindObjectOfType<CanvasGroup>();
+            yield return StartCoroutine(LoadSceneSetActive(startSceneName));
+            EventHandler.CallAfterSceneLoadedEvent();
         }
 
         #endregion
@@ -36,7 +37,6 @@ namespace Farm.Transition
             yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             Scene newScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
             SceneManager.SetActiveScene(newScene);
-            EventHandler.CallAfterSceneLoadedEvent();
         }
 
         private IEnumerator Transition(string sceneName, Vector3 targetPosition)
