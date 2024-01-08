@@ -34,6 +34,19 @@ public class AnimatorOverride : MonoBehaviour
 
     #endregion
 
+    private void SwitchAnimator(PartType partType)
+    {
+        foreach (var item in animatorTypes)
+        {
+            if (item.partType == partType)
+            {
+                animatorNameDict[item.partName.ToString()].runtimeAnimatorController = item.overrideController;
+            }
+        }
+    }
+
+    #region EventHandler Functions
+
     private void OnItemSelectedEvent(ItemDetails itemDetails, bool isSelected)
     {
         // WORKFLOW
@@ -41,6 +54,11 @@ public class AnimatorOverride : MonoBehaviour
         {
             ItemType.Seed => PartType.Carry,
             ItemType.Commodity => PartType.Carry,
+            ItemType.HoeTool => PartType.Hoe,
+            ItemType.ChopTool => PartType.Chop,
+            ItemType.BreakTool => PartType.Break,
+            ItemType.ReapTool => PartType.Reap,
+            ItemType.WaterTool => PartType.Water,
             _ => PartType.None
         };
 
@@ -61,20 +79,11 @@ public class AnimatorOverride : MonoBehaviour
         SwitchAnimator(currentType);
     }
 
-    private void SwitchAnimator(PartType partType)
-    {
-        foreach (var item in animatorTypes)
-        {
-            if (item.partType == partType)
-            {
-                animatorNameDict[item.partName.ToString()].runtimeAnimatorController = item.overrideController;
-            }
-        }
-    }
-
     private void OnBeforeSceneUnloadEvent()
     {
         holdItem.enabled = false;
         SwitchAnimator(PartType.None);
     }
+
+    #endregion
 }

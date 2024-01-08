@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,6 +12,10 @@ public class Player : MonoBehaviour
     private Animator[] animators;
     private bool isMoving;
     private bool inputDisable;
+
+    private bool useTool;
+    private float mouseX;
+    private float mouseY;
 
     #region Event Functions
 
@@ -92,14 +97,36 @@ public class Player : MonoBehaviour
     {
         foreach (var anim in animators)
         {
-            anim.SetBool("IsMoving", isMoving);
-
+            anim.SetBool("isMoving", isMoving);
+            anim.SetFloat("MouseX", mouseX);
+            anim.SetFloat("MouseY", mouseY);
             if (isMoving)
             {
                 anim.SetFloat("InputX", inputX);
                 anim.SetFloat("InputY", inputY);
             }
         }
+    }
+
+    private IEnumerator UseToolCoroutine(Vector3 mouseWorldPos, ItemDetails itemDetails)
+    {
+        useTool = true;
+        inputDisable = true;
+        yield return null;
+
+        foreach (var anim in animators)
+        {
+            anim.SetTrigger("useTool");
+            anim.SetFloat("InputX", mouseX);
+            anim.SetFloat("InputY", mouseY);
+        }
+
+        yield return new WaitForSeconds(0.45f);
+        EventHandler.CallExecuteAfterAnimationEvent(mouseWorldPos, itemDetails);
+        yield return new WaitForSeconds(0.25f);
+
+        useTool = false;
+        inputDisable = false;
     }
 
     #region EventHandler Functions
@@ -119,10 +146,35 @@ public class Player : MonoBehaviour
         transform.position = targetPosition;
     }
 
-    private void OnMouseClickedEvent(Vector3 pos, ItemDetails itemDetails)
+    private void OnMouseClickedEvent(Vector3 mouseWorldPos, ItemDetails itemDetails)
     {
+        if (useTool)
+        {
+            return;
+        }
+
         // TODO: Player animation
-        EventHandler.CallExecuteAfterAnimationEvent(pos, itemDetails);
+        if (itemDetails.itemType != ItemType.Seed && itemDetails.itemType != ItemType.Commodity &&
+            itemDetails.itemType != ItemType.Furniture)
+        {
+            mouseX = mouseWorldPos.x - transform.position.x;
+            mouseY = mouseWorldPos.y - transform.position.y;
+
+            if (Mathf.Abs(mouseX) > Mathf.Abs(mouseY))
+            {
+                mouseY = 0;
+            }
+            else
+            {
+                mouseX = 0;
+            }
+
+            StartCoroutine(UseToolCoroutine(mouseWorldPos, itemDetails));
+        }
+        else
+        {
+            EventHandler.CallExecuteAfterAnimationEvent(mouseWorldPos, itemDetails);
+        }
     }
 
     #endregion
