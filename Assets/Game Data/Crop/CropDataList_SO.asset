@@ -16,11 +16,11 @@ MonoBehaviour:
   - seedItemID: 1010
     growthDays: 0100000002000000020000000300000003000000
     growthPrefabs:
-    - {fileID: 3520140750899816305, guid: eebaea5e79c618749b91cb99f05e1057, type: 3}
-    - {fileID: 3520140750899816305, guid: eebaea5e79c618749b91cb99f05e1057, type: 3}
-    - {fileID: 3520140750899816305, guid: eebaea5e79c618749b91cb99f05e1057, type: 3}
-    - {fileID: 3520140750899816305, guid: eebaea5e79c618749b91cb99f05e1057, type: 3}
-    - {fileID: 3520140750899816305, guid: eebaea5e79c618749b91cb99f05e1057, type: 3}
+    - {fileID: 4274371758231787030, guid: a32f827dfa04cec46ae8c3e4f0ff5f83, type: 3}
+    - {fileID: 4274371758231787030, guid: a32f827dfa04cec46ae8c3e4f0ff5f83, type: 3}
+    - {fileID: 4274371758231787030, guid: a32f827dfa04cec46ae8c3e4f0ff5f83, type: 3}
+    - {fileID: 4274371758231787030, guid: a32f827dfa04cec46ae8c3e4f0ff5f83, type: 3}
+    - {fileID: 4274371758231787030, guid: a32f827dfa04cec46ae8c3e4f0ff5f83, type: 3}
     growthSprites:
     - {fileID: -2058122700, guid: bd1655396b777431e85369611fc36aed, type: 3}
     - {fileID: 1098745238, guid: bd1655396b777431e85369611fc36aed, type: 3}

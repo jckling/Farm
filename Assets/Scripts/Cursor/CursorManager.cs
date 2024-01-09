@@ -83,6 +83,7 @@ public class CursorManager : MonoBehaviour
         }
         else
         {
+            // WORKFLOW
             currentItem = itemDetails;
             currentSprite = itemDetails.itemType switch
             {
@@ -153,6 +154,15 @@ public class CursorManager : MonoBehaviour
             switch (currentItem.itemType)
             {
                 case ItemType.Seed:
+                    if (currentTile.daySinceDug > -1 && currentTile.seedItemID == -1)
+                    {
+                        SetCursorValid();
+                    }
+                    else
+                    {
+                        SetCursorInvalid();
+                    }
+
                     break;
                 case ItemType.Commodity:
                     if (currentTile.canDropItem && currentItem.canDropped)

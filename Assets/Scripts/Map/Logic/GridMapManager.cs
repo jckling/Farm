@@ -120,9 +120,11 @@ namespace Farm.Map
                 switch (itemDetails.itemType)
                 {
                     case ItemType.Seed:
+                        EventHandler.CallPlantSeedEvent(itemDetails.itemID, currentTile);
+                        EventHandler.CallDropItemEvent(itemDetails.itemID, mouseWorldPos, itemDetails.itemType);
                         break;
                     case ItemType.Commodity:
-                        EventHandler.CallDropItemEvent(itemDetails.itemID, mouseWorldPos);
+                        EventHandler.CallDropItemEvent(itemDetails.itemID, mouseWorldPos, itemDetails.itemType);
                         break;
                     case ItemType.ChopTool:
                         break;
@@ -170,6 +172,12 @@ namespace Farm.Map
                 {
                     tileDetails.daySinceDug = -1;
                     tileDetails.canDig = true;
+                    tileDetails.growthDays = -1;
+                }
+
+                if (tileDetails.seedItemID != -1)
+                {
+                    tileDetails.growthDays++;
                 }
             }
 
@@ -220,6 +228,11 @@ namespace Farm.Map
                     {
                         SetWaterGround(tileDetails);
                     }
+
+                    if (tileDetails.seedItemID > -1)
+                    {
+                        EventHandler.CallPlantSeedEvent(tileDetails.seedItemID, tileDetails);
+                    }
                 }
             }
         }
@@ -234,6 +247,11 @@ namespace Farm.Map
             if (waterTilemap != null)
             {
                 waterTilemap.ClearAllTiles();
+            }
+
+            foreach (var crop in FindObjectsOfType<Crop>())
+            {
+                Destroy(crop.gameObject);
             }
 
             DisplayMap(SceneManager.GetActiveScene().name);

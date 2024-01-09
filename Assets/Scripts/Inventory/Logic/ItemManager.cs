@@ -41,8 +41,13 @@ namespace Farm.Inventory
             item.itemID = id;
         }
 
-        private void OnDropItemEvent(int id, Vector3 mousePos)
+        private void OnDropItemEvent(int id, Vector3 mousePos, ItemType itemType)
         {
+            if (itemType == ItemType.Seed)
+            {
+                return;
+            }
+
             var item = Instantiate(bounceItemPrefab, playerTransform.position, Quaternion.identity, itemParent);
             item.itemID = id;
 

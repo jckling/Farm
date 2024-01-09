@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Farm.Inventory
@@ -29,7 +28,7 @@ namespace Farm.Inventory
 
         #region EventHandler Functions
 
-        private void OnDropItemEvent(int id, Vector3 pos)
+        private void OnDropItemEvent(int id, Vector3 pos, ItemType itemType)
         {
             RemoveItem(id, 1);
         }
