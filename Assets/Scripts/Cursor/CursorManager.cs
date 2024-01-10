@@ -1,4 +1,4 @@
-using System;
+using Farm.CropPlant;
 using Farm.Map;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -89,12 +89,13 @@ public class CursorManager : MonoBehaviour
             {
                 ItemType.Seed => seed,
                 ItemType.Commodity => item,
-                ItemType.ChopTool => tool,
+                ItemType.Furniture => tool,
                 ItemType.HoeTool => tool,
-                ItemType.WaterTool => tool,
+                ItemType.ChopTool => tool,
                 ItemType.BreakTool => tool,
                 ItemType.ReapTool => tool,
-                ItemType.Furniture => tool,
+                ItemType.WaterTool => tool,
+                ItemType.CollectTool => tool,
                 _ => normal
             };
             cursorEnable = true;
@@ -150,6 +151,8 @@ public class CursorManager : MonoBehaviour
         TileDetails currentTile = GridMapManager.Instance.GetTileDetailsFromMousePosition(mouseGridPos);
         if (currentTile != null)
         {
+            CropDetails currentCropDetails = CropManager.Instance.GetCropDetails(currentTile.seedItemID);
+
             // WORKFLOW
             switch (currentItem.itemType)
             {
@@ -175,7 +178,7 @@ public class CursorManager : MonoBehaviour
                     }
 
                     break;
-                case ItemType.ChopTool:
+                case ItemType.Furniture:
                     break;
                 case ItemType.HoeTool:
                     if (currentTile.canDig)
@@ -188,6 +191,12 @@ public class CursorManager : MonoBehaviour
                     }
 
                     break;
+                case ItemType.ChopTool:
+                    break;
+                case ItemType.BreakTool:
+                    break;
+                case ItemType.ReapTool:
+                    break;
                 case ItemType.WaterTool:
                     if (currentTile.daySinceDug > -1 && currentTile.daySinceWatered == -1)
                     {
@@ -199,11 +208,26 @@ public class CursorManager : MonoBehaviour
                     }
 
                     break;
-                case ItemType.BreakTool:
-                    break;
-                case ItemType.ReapTool:
-                    break;
-                case ItemType.Furniture:
+                case ItemType.CollectTool:
+                    if (currentCropDetails != null)
+                    {
+                        if (currentCropDetails.CheckToolValid(currentItem.itemID))
+                        {
+                            if (currentTile.growthDays >= currentCropDetails.TotalGrowthDays)
+                            {
+                                SetCursorValid();
+                            }
+                            else
+                            {
+                                SetCursorInvalid();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        SetCursorInvalid();
+                    }
+
                     break;
             }
         }

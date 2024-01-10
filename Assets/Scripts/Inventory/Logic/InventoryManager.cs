@@ -12,11 +12,13 @@ namespace Farm.Inventory
         private void OnEnable()
         {
             EventHandler.DropItemEvent += OnDropItemEvent;
+            EventHandler.HarvestAtPlayerPosition += OnHarvestAtPlayerPosition;
         }
 
         private void OnDisable()
         {
             EventHandler.DropItemEvent -= OnDropItemEvent;
+            EventHandler.HarvestAtPlayerPosition -= OnHarvestAtPlayerPosition;
         }
 
         private void Start()
@@ -31,6 +33,14 @@ namespace Farm.Inventory
         private void OnDropItemEvent(int id, Vector3 pos, ItemType itemType)
         {
             RemoveItem(id, 1);
+        }
+
+        private void OnHarvestAtPlayerPosition(int itemID)
+        {
+            var index = GetItemIndexInBag(itemID);
+            AddItemAtIndex(itemID, index, 1);
+
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag_SO.itemList);
         }
 
         #endregion

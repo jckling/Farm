@@ -4,6 +4,7 @@ public enum ItemType
     Commodity,
     Furniture,
 
+    // Tools
     HoeTool,
     ChopTool,
     BreakTool,
@@ -30,12 +31,15 @@ public enum InventoryLocation
 public enum PartType
 {
     None,
+    Carry,
+
+    // Tools
     Hoe,
     Chop,
     Break,
     Reap,
     Water,
-    Carry
+    Collect
 }
 
 public enum PartName

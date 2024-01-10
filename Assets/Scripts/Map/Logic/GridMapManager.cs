@@ -25,13 +25,15 @@ namespace Farm.Map
             EventHandler.ExecuteAfterAnimation += OnExecuteAfterAnimation;
             EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
             EventHandler.GameDayEvent += OnGameDayEvent;
+            EventHandler.RefreshCurrentMap += RefreshMap;
         }
 
         private void OnDisable()
         {
             EventHandler.ExecuteAfterAnimation -= OnExecuteAfterAnimation;
             EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
-            EventHandler.GameDayEvent += OnGameDayEvent;
+            EventHandler.GameDayEvent -= OnGameDayEvent;
+            EventHandler.RefreshCurrentMap -= RefreshMap;
         }
 
         private void Start()
@@ -126,7 +128,7 @@ namespace Farm.Map
                     case ItemType.Commodity:
                         EventHandler.CallDropItemEvent(itemDetails.itemID, mouseWorldPos, itemDetails.itemType);
                         break;
-                    case ItemType.ChopTool:
+                    case ItemType.Furniture:
                         break;
                     case ItemType.HoeTool:
                         SetDigGround(currentTile);
@@ -135,16 +137,20 @@ namespace Farm.Map
                         currentTile.canDropItem = false;
                         // 音效
                         break;
-                    case ItemType.WaterTool:
-                        SetWaterGround(currentTile);
-                        currentTile.daySinceWatered = 0;
-                        // 音效
+                    case ItemType.ChopTool:
                         break;
                     case ItemType.BreakTool:
                         break;
                     case ItemType.ReapTool:
                         break;
-                    case ItemType.Furniture:
+                    case ItemType.WaterTool:
+                        SetWaterGround(currentTile);
+                        currentTile.daySinceWatered = 0;
+                        // 音效
+                        break;
+                    case ItemType.CollectTool:
+                        var currentCrop = GetCropObject(mouseWorldPos);
+                        currentCrop.ProcessToolAction(itemDetails, currentTile);
                         break;
                 }
 
@@ -237,7 +243,7 @@ namespace Farm.Map
             }
         }
 
-        void RefreshMap()
+        private void RefreshMap()
         {
             if (digTilemap != null)
             {
@@ -255,6 +261,21 @@ namespace Farm.Map
             }
 
             DisplayMap(SceneManager.GetActiveScene().name);
+        }
+
+        private Crop GetCropObject(Vector3 mouseWorldPos)
+        {
+            Collider2D[] colliders = Physics2D.OverlapPointAll(mouseWorldPos);
+            Crop currentCrop = null;
+            foreach (var collider in colliders)
+            {
+                if (collider.GetComponent<Crop>())
+                {
+                    currentCrop = collider.GetComponent<Crop>();
+                }
+            }
+
+            return currentCrop;
         }
     }
 }

@@ -101,4 +101,18 @@ public static class EventHandler
     {
         PlantSeedEvent?.Invoke(id, tileDetails);
     }
+
+    public static event Action<int> HarvestAtPlayerPosition;
+
+    public static void CallHarvestAtPlayerPosition(int id)
+    {
+        HarvestAtPlayerPosition?.Invoke(id);
+    }
+
+    public static event Action RefreshCurrentMap;
+
+    public static void CallRefreshCurrentMap()
+    {
+        RefreshCurrentMap?.Invoke();
+    }
 }
