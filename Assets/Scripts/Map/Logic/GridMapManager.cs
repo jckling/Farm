@@ -140,7 +140,7 @@ namespace Farm.Map
                         // TODO: 音效
                         break;
                     case ItemType.ChopTool:
-                        currentCrop.ProcessToolAction(itemDetails, currentCrop.tileDetails);
+                        currentCrop?.ProcessToolAction(itemDetails, currentCrop.tileDetails);
                         break;
                     case ItemType.BreakTool:
                         break;

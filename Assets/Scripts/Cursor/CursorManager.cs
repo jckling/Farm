@@ -204,6 +204,10 @@ public class CursorManager : MonoBehaviour
                             SetCursorInvalid();
                         }
                     }
+                    else
+                    {
+                        SetCursorInvalid();
+                    }
 
                     break;
                 case ItemType.BreakTool:
