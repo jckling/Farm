@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1955026376666519947}
   - component: {fileID: 1955026376666519944}
+  - component: {fileID: -8628739936929562042}
   m_Layer: 0
   m_Name: Tree02
   m_TagString: Untagged
@@ -68,6 +69,36 @@ PolygonCollider2D:
       - {x: 0.40168476, y: 2.4616394}
       - {x: 2.4468737, y: 3.0446215}
       - {x: 2.5602064, y: 5.1170807}
+--- !u!114 &-8628739936929562042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955026376666519945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0792caa4c9c65834c95d270692ff2da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cropDetails:
+    seedItemID: 0
+    growthDays: 
+    growthPrefabs: []
+    growthSprites: []
+    seasons: 
+    harvestToolItemID: 
+    requireActionCount: 
+    transferItemID: 0
+    producedItemID: 
+    producedMinAmount: 
+    producedMaxAmount: 
+    spawnRadius: {x: 0, y: 0}
+    daysToRegrow: 0
+    regrowTimes: 0
+    generateAtPlayerPosition: 0
+    hasAnimation: 0
+    hasParticleEffect: 0
 --- !u!1 &1955026376690930112
 GameObject:
   m_ObjectHideFlags: 0

@@ -85,6 +85,7 @@ public class AnimatorOverride : MonoBehaviour
             }
         }
 
+        SwitchAnimator(PartType.None);
         SwitchAnimator(currentType);
     }
 

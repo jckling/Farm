@@ -134,7 +134,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6949806664337441243}
   - component: {fileID: 6949806664337441244}
-  - component: {fileID: 6949806664337441242}
+  - component: {fileID: -3172844156353145219}
+  - component: {fileID: -5562512827139492370}
   m_Layer: 0
   m_Name: Tree01
   m_TagString: Untagged
@@ -170,8 +171,50 @@ SortingGroup:
   m_SortingLayerID: 1289567873
   m_SortingLayer: 10
   m_SortingOrder: 0
---- !u!60 &6949806664337441242
-PolygonCollider2D:
+--- !u!114 &-3172844156353145219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6949806664337441245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0792caa4c9c65834c95d270692ff2da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cropDetails:
+    seedItemID: 0
+    growthDays: 
+    growthPrefabs: []
+    growthSprites: []
+    seasons: 
+    harvestToolItemID: 
+    requireActionCount: 
+    transferItemID: 0
+    producedItemID: 
+    producedMinAmount: 
+    producedMaxAmount: 
+    spawnRadius: {x: 0, y: 0}
+    daysToRegrow: 0
+    regrowTimes: 0
+    generateAtPlayerPosition: 0
+    hasAnimation: 0
+    hasParticleEffect: 0
+  tileDetails:
+    gridX: 0
+    gridY: 0
+    canDig: 0
+    canDropItem: 0
+    canPlaceFurniture: 0
+    isNPCObstacles: 0
+    daySinceDug: -1
+    daySinceWatered: -1
+    seedItemID: -1
+    growthDays: -1
+    daySinceLastHarvest: -1
+--- !u!61 &-5562512827139492370
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -183,26 +226,19 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.030000001, y: 1.2633739}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 4.4, y: 5.95}
-    newSize: {x: 4.4, y: 5.95}
-    adaptiveTilingThreshold: 0.5
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 2.2364047, y: 2.0081995}
-      - {x: 0.05, y: 5.9500003}
-      - {x: -0.2, y: 5.9500003}
-      - {x: -2.1871638, y: 2.2712991}
-      - {x: -0.5079746, y: 1.4365175}
-      - {x: -0.43140697, y: -0.9345771}
-      - {x: 0.41859302, y: -0.9345771}
-      - {x: 0.39813232, y: 1.5056566}
+  serializedVersion: 2
+  m_Size: {x: 0.9, y: 2.173252}
+  m_EdgeRadius: 0
 --- !u!1 &6949806664575267684
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +250,7 @@ GameObject:
   - component: {fileID: 6949806664575267683}
   - component: {fileID: 6949806664575267682}
   - component: {fileID: 6949806664575267680}
+  - component: {fileID: 4856163077261227223}
   m_Layer: 0
   m_Name: Tree01_Top
   m_TagString: Untagged
@@ -228,8 +265,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6949806664575267684}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.05000019, y: 0.79999995, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.05000019, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -300,3 +337,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 029bd2371ffbcb749839d6c07f90f4c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &4856163077261227223
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6949806664575267684}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 31aa96fb1f56e384999f854cac796ef1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -1,11 +1,15 @@
+using System.Collections;
 using UnityEngine;
 
 public class Crop : MonoBehaviour
 {
     public CropDetails cropDetails;
+    public TileDetails tileDetails;
+    public bool CanHarvest => tileDetails.growthDays >= cropDetails.TotalGrowthDays;
 
     private int harvestActionCount;
-    private TileDetails tileDetails;
+    private Animator anim;
+    private Transform playerTransform => FindObjectOfType<Player>().transform;
 
     public void ProcessToolAction(ItemDetails tool, TileDetails tileDetails)
     {
@@ -16,19 +20,32 @@ public class Crop : MonoBehaviour
             return;
         }
 
-        // TODO: hasAnimation
+        anim = GetComponentInChildren<Animator>();
+
         if (harvestActionCount < requireActionCount)
         {
             harvestActionCount++;
+
+            if (anim != null && cropDetails.hasAnimation)
+            {
+                anim.SetTrigger(playerTransform.position.x < transform.position.x ? "RotateRight" : "RotateLeft");
+                Debug.Log("anim.SetTrigger.Rotate");
+            }
             // TODO: particle effect
             // TODO: Sound
         }
 
-        if (harvestActionCount == requireActionCount)
+        if (harvestActionCount >= requireActionCount)
         {
-            if (cropDetails.generateAtPlayerPosition)
+            if (cropDetails.generateAtPlayerPosition || !cropDetails.hasAnimation)
             {
                 SpawnHarvestItems();
+            }
+            else if (cropDetails.hasAnimation)
+            {
+                anim.SetTrigger(playerTransform.position.x < transform.position.x ? "FallRight" : "FallLeft");
+                StartCoroutine(SpawnHarvestAfterAnimation());
+                Debug.Log("anim.SetTrigger.Fall");
             }
         }
     }
@@ -49,7 +66,12 @@ public class Crop : MonoBehaviour
                 }
                 else
                 {
-                    // TODO: 石头、树木等
+                    var dirX = transform.position.x > playerTransform.position.x ? 1 : -1;
+                    var spawnPos =
+                        new Vector3(transform.position.x + Random.Range(dirX, cropDetails.spawnRadius.x * dirX),
+                            transform.position.y + Random.Range(-cropDetails.spawnRadius.y, cropDetails.spawnRadius.y),
+                            0);
+                    EventHandler.CallInstantiateItemInScene(cropDetails.producedItemID[i], spawnPos);
                 }
             }
         }
@@ -71,5 +93,29 @@ public class Crop : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator SpawnHarvestAfterAnimation()
+    {
+        while (anim.GetCurrentAnimatorStateInfo(0).IsName("End"))
+        {
+            yield return null;
+        }
+
+        SpawnHarvestItems();
+
+        if (cropDetails.transferItemID > 0)
+        {
+            CreateTransferCrop();
+        }
+    }
+
+    private void CreateTransferCrop()
+    {
+        tileDetails.seedItemID = cropDetails.transferItemID;
+        tileDetails.daySinceLastHarvest = -1;
+        tileDetails.growthDays = 0;
+
+        EventHandler.CallRefreshCurrentMap();
     }
 }

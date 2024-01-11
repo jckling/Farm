@@ -118,6 +118,8 @@ namespace Farm.Map
 
             if (currentTile != null)
             {
+                Crop currentCrop = GetCropObject(mouseWorldPos);
+
                 // WORKFLOW
                 switch (itemDetails.itemType)
                 {
@@ -135,9 +137,10 @@ namespace Farm.Map
                         currentTile.daySinceDug = 0;
                         currentTile.canDig = false;
                         currentTile.canDropItem = false;
-                        // 音效
+                        // TODO: 音效
                         break;
                     case ItemType.ChopTool:
+                        currentCrop.ProcessToolAction(itemDetails, currentCrop.tileDetails);
                         break;
                     case ItemType.BreakTool:
                         break;
@@ -149,7 +152,6 @@ namespace Farm.Map
                         // 音效
                         break;
                     case ItemType.CollectTool:
-                        var currentCrop = GetCropObject(mouseWorldPos);
                         currentCrop.ProcessToolAction(itemDetails, currentTile);
                         break;
                 }
@@ -263,7 +265,7 @@ namespace Farm.Map
             DisplayMap(SceneManager.GetActiveScene().name);
         }
 
-        private Crop GetCropObject(Vector3 mouseWorldPos)
+        public Crop GetCropObject(Vector3 mouseWorldPos)
         {
             Collider2D[] colliders = Physics2D.OverlapPointAll(mouseWorldPos);
             Crop currentCrop = null;

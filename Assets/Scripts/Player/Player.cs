@@ -159,7 +159,7 @@ public class Player : MonoBehaviour
             itemDetails.itemType != ItemType.Furniture)
         {
             mouseX = mouseWorldPos.x - transform.position.x;
-            mouseY = mouseWorldPos.y - transform.position.y;
+            mouseY = mouseWorldPos.y - (transform.position.y + .85f); // Player 高度的一半
 
             if (Mathf.Abs(mouseX) > Mathf.Abs(mouseY))
             {

@@ -152,6 +152,7 @@ public class CursorManager : MonoBehaviour
         if (currentTile != null)
         {
             CropDetails currentCropDetails = CropManager.Instance.GetCropDetails(currentTile.seedItemID);
+            Crop crop = GridMapManager.Instance.GetCropObject(mouseWorldPos);
 
             // WORKFLOW
             switch (currentItem.itemType)
@@ -192,6 +193,18 @@ public class CursorManager : MonoBehaviour
 
                     break;
                 case ItemType.ChopTool:
+                    if (crop != null)
+                    {
+                        if (crop.CanHarvest && crop.cropDetails.CheckToolValid(currentItem.itemID))
+                        {
+                            SetCursorValid();
+                        }
+                        else
+                        {
+                            SetCursorInvalid();
+                        }
+                    }
+
                     break;
                 case ItemType.BreakTool:
                     break;

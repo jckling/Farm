@@ -67,3 +67,49 @@ MonoBehaviour:
     generateAtPlayerPosition: 1
     hasAnimation: 0
     hasParticleEffect: 0
+  - seedItemID: 1030
+    growthDays: 0200000003000000030000000400000005000000
+    growthPrefabs:
+    - {fileID: 4274371758231787030, guid: a32f827dfa04cec46ae8c3e4f0ff5f83, type: 3}
+    - {fileID: 4274371758231787030, guid: a32f827dfa04cec46ae8c3e4f0ff5f83, type: 3}
+    - {fileID: 4274371758231787030, guid: a32f827dfa04cec46ae8c3e4f0ff5f83, type: 3}
+    - {fileID: 4274371758231787030, guid: a32f827dfa04cec46ae8c3e4f0ff5f83, type: 3}
+    - {fileID: 6949806664337441245, guid: 7f68a75a934fb144ea509b2c22e77c22, type: 3}
+    growthSprites:
+    - {fileID: 21300000, guid: 3979be82862ab4b42be8e0b3222694bc, type: 3}
+    - {fileID: 21300000, guid: b344f2cee7ac54d7ab52e493a1bb4ee7, type: 3}
+    - {fileID: 21300000, guid: c54002cd9727a43329d7f75c50778b57, type: 3}
+    - {fileID: 21300000, guid: 4590cd3fefdd74b22ae749a122189ece, type: 3}
+    - {fileID: 21300000, guid: e12c6f18fb50544fea7f5245a9a2aeff, type: 3}
+    seasons: 0000000001000000
+    harvestToolItemID: e9030000
+    requireActionCount: 05000000
+    transferItemID: 1032
+    producedItemID: 0604000007040000
+    producedMinAmount: 0200000003000000
+    producedMaxAmount: 0500000006000000
+    spawnRadius: {x: 3, y: 1}
+    daysToRegrow: 0
+    regrowTimes: 0
+    generateAtPlayerPosition: 0
+    hasAnimation: 1
+    hasParticleEffect: 0
+  - seedItemID: 1032
+    growthDays: 00000000
+    growthPrefabs:
+    - {fileID: 2861487097697932420, guid: 75ce8c758c614fb40940b8a30fe1ef3c, type: 3}
+    growthSprites:
+    - {fileID: 21300000, guid: f92caccf9fb8e45bcb3b3b1116dcbf48, type: 3}
+    seasons: 00000000010000000200000003000000
+    harvestToolItemID: e9030000
+    requireActionCount: 05000000
+    transferItemID: 0
+    producedItemID: 07040000
+    producedMinAmount: 02000000
+    producedMaxAmount: 04000000
+    spawnRadius: {x: 0.5, y: 0.5}
+    daysToRegrow: 0
+    regrowTimes: 0
+    generateAtPlayerPosition: 0
+    hasAnimation: 0
+    hasParticleEffect: 0
