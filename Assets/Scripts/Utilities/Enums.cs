@@ -65,3 +65,12 @@ public enum GridType
     PlaceFurniture,
     NPCObstacles
 }
+
+public enum ParticleEffectType
+{
+    None,
+    Leaves01,
+    Leaves02,
+    Rock,
+    ReapableScenery
+}

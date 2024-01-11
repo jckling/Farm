@@ -41,6 +41,8 @@ public class CropDetails
     [Header("其他选项")] public bool generateAtPlayerPosition;
     public bool hasAnimation;
     public bool hasParticleEffect;
+    public ParticleEffectType effectType;
+    public Vector3 effectPos;
 
     public bool CheckToolValid(int toolID)
     {

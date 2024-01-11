@@ -29,9 +29,14 @@ public class Crop : MonoBehaviour
             if (anim != null && cropDetails.hasAnimation)
             {
                 anim.SetTrigger(playerTransform.position.x < transform.position.x ? "RotateRight" : "RotateLeft");
-                Debug.Log("anim.SetTrigger.Rotate");
             }
-            // TODO: particle effect
+
+            if (cropDetails.hasParticleEffect)
+            {
+                EventHandler.CallParticleEffectEvent(cropDetails.effectType,
+                    transform.position + cropDetails.effectPos);
+            }
+
             // TODO: Sound
         }
 
@@ -45,7 +50,6 @@ public class Crop : MonoBehaviour
             {
                 anim.SetTrigger(playerTransform.position.x < transform.position.x ? "FallRight" : "FallLeft");
                 StartCoroutine(SpawnHarvestAfterAnimation());
-                Debug.Log("anim.SetTrigger.Fall");
             }
         }
     }
